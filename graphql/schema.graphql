@@ -1,0 +1,104 @@
+type Query {
+  graphs: [Graph!]
+  graph(id: String!): Graph
+  sets: [Set!]
+  set(id: String!): Set
+}
+
+type Graph {
+  id: String
+  name: String!
+  vertices: [Vertex!]
+  edges: [Edge!]
+  adjacency_list: [Adjacency!]
+  adjacency_matrix: [AdjacencyMatrixColumn!]
+}
+
+type Edge {
+  source_vertex_id: String
+  source_vertex_name: String
+  destination_vertex_id: String
+  destination_vertex_name: String
+}
+
+type Vertex {
+  id: String
+  name: String!
+  graph_id: String
+}
+
+type Adjacency {
+  source: Vertex!
+  destinations: [Vertex!]!
+}
+
+type AdjacencyMatrixColumn {
+  vertex: Vertex!
+  vertices: [AdjacencyMatrixRow!]!
+}
+
+type AdjacencyMatrixRow {
+  vertex: Vertex!
+  has_edge: Boolean!
+}
+
+type Set {
+  id: String
+  name: String!
+  elements: [Element!]
+}
+
+type Element {
+  id: String
+  name: String!
+  set_id: String
+}
+
+type SuccessResponse {
+  success: Boolean!
+  message: String
+}
+
+input GraphInput {
+  default: DefaultGraphInput
+  adjacency_list: AdjacencyListInput
+  adjacency_matrix: AdjacencyMatrixInput
+}
+
+input DefaultGraphInput {
+  vertices: [String!]!
+  edges: [EdgeInput!]!
+}
+
+input EdgeInput {
+  source: String!
+  destination: String!
+}
+
+input AdjacencyListInput {
+  vertices: [AdjacencyInput!]!
+}
+
+input AdjacencyInput {
+  vertex: String!
+  vertices: [String!]!
+}
+
+input AdjacencyMatrixInput {
+  vertices: [AdjacencyMatrixColumnInput!]!
+}
+
+input AdjacencyMatrixColumnInput {
+  vertex: String!
+  vertices: [AdjacencyMatrixRowInput!]!
+}
+
+input AdjacencyMatrixRowInput {
+  vertex: String!
+  has_edge: Boolean!
+}
+
+type Mutation {
+  addGraph(name: String!, graph: GraphInput!): SuccessResponse
+  addSet(name: String!, elements: [String!]): SuccessResponse
+}

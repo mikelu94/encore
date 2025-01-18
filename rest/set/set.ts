@@ -2,7 +2,8 @@ import { api, APIError } from "encore.dev/api";
 import { v4 as uuidv4 } from "uuid";
 
 import { SuccessResponse } from "../common";
-import { set as db, Set } from "../../db/tables";
+import { set as db } from "../../db/tables";
+import { Set } from '../../graphql/__generated__/resolvers-types';
 
 export const getSets = api(
   { expose: true, auth: false, method: "GET", path: "/set"},

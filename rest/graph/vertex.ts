@@ -2,7 +2,8 @@ import { api, APIError } from "encore.dev/api";
 import { v4 as uuidv4 } from "uuid";
 
 import { SuccessResponse } from "../common";
-import { graph as db, Vertex } from "../../db/tables";
+import { graph as db } from "../../db/tables";
+import { Vertex } from '../../graphql/__generated__/resolvers-types';
 import type { uuid } from "../../db/tables";
 
 export const getVertices = api(

@@ -2,7 +2,8 @@ import { api, APIError } from "encore.dev/api";
 import { v4 as uuidv4 } from "uuid";
 
 import { SuccessResponse } from "../common";
-import { set as db, Element } from "../../db/tables";
+import { set as db } from "../../db/tables";
+import { Element } from '../../graphql/__generated__/resolvers-types';
 import type { uuid } from "../../db/tables";
 
 export const getElements = api(

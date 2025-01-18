@@ -2,7 +2,8 @@ import { api, APIError } from "encore.dev/api";
 import { v4 as uuidv4 } from "uuid";
 
 import { SuccessResponse } from "../common";
-import { graph as db, Graph } from "../../db/tables";
+import { graph as db } from "../../db/tables";
+import { Graph } from '../../graphql/__generated__/resolvers-types';
 
 export const getGraphs = api(
   { expose: true, auth: false, method: "GET", path: "/graph"},
